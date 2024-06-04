@@ -29,7 +29,6 @@ class _BottonsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context).colorScheme;
     return SizedBox(
       width: double.infinity,
@@ -63,16 +62,16 @@ class _BottonsView extends StatelessWidget {
             ),
             OutlinedButton(
               onPressed: () {},
-              child: Text("outLineBotton"),
+              child: const Text("outLineBotton"),
             ),
             OutlinedButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.door_sliding),
-              label: Text("outLineBotton Icon"),
+              icon: const Icon(Icons.door_sliding),
+              label: const Text("outLineBotton Icon"),
             ),
             TextButton(
               onPressed: () {},
-              child: Text("Text Botton"),
+              child: const Text("Text Botton"),
             ),
             TextButton.icon(
               label: const Text("text Icon Button"),
@@ -80,13 +79,41 @@ class _BottonsView extends StatelessWidget {
               icon: const Icon(Icons.dns_sharp),
             ),
             //todo custom botton
-
+            const CustomButton(),
             IconButton(
-              style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(colors.primary) ),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(colors.primary)),
               onPressed: () {},
-              icon: Icon(Icons.abc_rounded),
+              icon: const Icon(Icons.abc_rounded),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return  ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Material(
+        color: colors.primary,
+        child: InkWell(
+          onTap: () {
+            
+          },
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              "Hola",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
