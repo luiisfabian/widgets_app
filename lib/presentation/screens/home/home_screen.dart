@@ -68,7 +68,7 @@ class _CustomListTile extends StatelessWidget {
         // Navigator.pushNamed(context, menuItem.link);
 
         // context.go(menuItem.link);
-        context.pushNamed(BottonsScreen.name);
+        context.pushNamed(CardsScreen.name);
       },
     );
   }
