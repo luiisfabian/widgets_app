@@ -46,6 +46,18 @@ class _CardsView extends StatelessWidget {
             (card) =>
                 CardTypeTwo(label: card['label'], elevation: card['elevation']),
           ),
+          ...cards.map(
+            (card) => CardTypeThree(
+                label: card['label'], elevation: card['elevation']),
+          ),
+          ...cards.map(
+            (card) => CardTypeFour(
+                label: card['label'], elevation: card['elevation']),
+          ),
+          
+          const SizedBox(
+            height: 30,
+          )
         ],
       ),
     );
@@ -63,14 +75,14 @@ class CardTypeOne extends StatelessWidget {
     return Card(
       elevation: elevation,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Align(
                 alignment: Alignment.topRight,
                 child: IconButton(
-                  icon: Icon(Icons.more_vert_outlined),
+                  icon: const Icon(Icons.more_vert_outlined),
                   onPressed: () {},
                 ),
               ),
@@ -94,22 +106,99 @@ class CardTypeTwo extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
         side: BorderSide(color: colors.outline),
       ),
       elevation: elevation,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(10, 5, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
         child: Column(
           children: [
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                icon: Icon(Icons.more_vert_outlined),
+                icon: const Icon(Icons.more_vert_outlined),
                 onPressed: () {},
               ),
             ),
-            Align(alignment: Alignment.bottomLeft, child: Text('${label} Outline')),
+            Align(
+                alignment: Alignment.bottomLeft,
+                child: Text('${label} Outline')),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CardTypeThree extends StatelessWidget {
+  const CardTypeThree(
+      {super.key, required this.label, required this.elevation});
+
+  final String label;
+  final double elevation;
+
+  @override
+  Widget build(BuildContext context) {
+        final colors = Theme.of(context).colorScheme;
+
+    return Card(
+      color: colors.surface,
+      elevation: elevation,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.more_vert_outlined),
+                  onPressed: () {},
+                ),
+              ),
+              Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(label + "- Filled")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CardTypeFour extends StatelessWidget {
+  const CardTypeFour(
+      {super.key, required this.label, required this.elevation});
+
+  final String label;
+  final double elevation;
+
+  @override
+  Widget build(BuildContext context) {
+        final colors = Theme.of(context).colorScheme;
+
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      elevation: elevation,
+      child: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Image.network('https://picsum.photos/id/${elevation.toInt()}/600/300', height: 350, fit: BoxFit.cover,),
+            Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20))
+                  ),
+                  child: IconButton(
+                    icon: const Icon(Icons.more_vert_outlined),
+                    onPressed: () {},
+                  ),
+                ),
+              ),
           ],
         ),
       ),
