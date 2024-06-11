@@ -189,7 +189,7 @@ class CardTypeFour extends StatelessWidget {
             Align(
                 alignment: Alignment.topRight,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20))
                   ),
