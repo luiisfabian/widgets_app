@@ -11,9 +11,8 @@ class AnimatedScreen extends StatefulWidget {
 }
 
 class _AnimatedScreenState extends State<AnimatedScreen> {
-  @override
-  Widget build(BuildContext context) {
-    double _width = 50;
+
+   double _width = 50;
     double _height = 50;
     Color _color = Colors.indigo;
     double _borderRadious = 10.0;
@@ -29,6 +28,10 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
             random.nextInt(255), random.nextInt(255), random.nextInt(255), 1);
       });
     }
+
+  @override
+  Widget build(BuildContext context) {
+   
 
     return Scaffold(
       appBar: AppBar(
