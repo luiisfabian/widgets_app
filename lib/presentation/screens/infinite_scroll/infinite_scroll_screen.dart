@@ -63,6 +63,22 @@ class _InfiteScrollScreenState extends State<InfiteScrollScreen> {
     setState(() {});
   }
 
+  Future onRefresh() async {
+    isLoading = true;
+    setState(() {});
+    await Future.delayed(Duration(seconds: 2));
+
+    if (!isMounted) return;
+
+    final lastId = imagesIds.last;
+    isLoading = false;
+
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    addFiveImages();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,19 +90,25 @@ class _InfiteScrollScreenState extends State<InfiteScrollScreen> {
         context: context,
         removeTop: true,
         removeBottom: true,
-        child: ListView.builder(
-          controller: scrollController,
-          itemCount: imagesIds.length,
-          itemBuilder: (context, index) {
-            return FadeInImage(
-              width: double.infinity,
-              height: 200,
-              fit: BoxFit.contain,
-              placeholder: AssetImage('assets/images/jar-loading.gif'),
-              image: NetworkImage(
-                  "https://picsum.photos/id/${imagesIds[index]}/500/300"),
-            );
-          },
+        
+        child: RefreshIndicator(
+          strokeWidth: 2,
+          edgeOffset: 10,
+          onRefresh: onRefresh,
+          child: ListView.builder(
+            controller: scrollController,
+            itemCount: imagesIds.length,
+            itemBuilder: (context, index) {
+              return FadeInImage(
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.contain,
+                placeholder: AssetImage('assets/images/jar-loading.gif'),
+                image: NetworkImage(
+                    "https://picsum.photos/id/${imagesIds[index]}/500/300"),
+              );
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
