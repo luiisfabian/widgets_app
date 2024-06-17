@@ -54,6 +54,8 @@ class _InfiteScrollScreenState extends State<InfiteScrollScreen> {
     setState(() {});
 
     //todo mover Scroll
+
+    moveScrollBotton();
   }
 
   void addFiveImages() {
@@ -79,6 +81,14 @@ class _InfiteScrollScreenState extends State<InfiteScrollScreen> {
     setState(() {});
   }
 
+  void moveScrollBotton() {
+    if (scrollController.position.pixels + 100 <=
+        scrollController.position.maxScrollExtent) return;
+
+    scrollController.animateTo(scrollController.position.pixels + 120,
+        duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +100,6 @@ class _InfiteScrollScreenState extends State<InfiteScrollScreen> {
         context: context,
         removeTop: true,
         removeBottom: true,
-        
         child: RefreshIndicator(
           strokeWidth: 2,
           edgeOffset: 10,
