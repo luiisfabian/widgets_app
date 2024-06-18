@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
 import 'package:go_router/go_router.dart';
+import 'package:widgets_app/presentation/widgets/side_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String name = 'home';
@@ -9,11 +10,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("FLUTTER + MATERIAL 3"),
-          centerTitle: true,
-        ),
-        body: const _HomeView());
+      appBar: AppBar(
+        title: Text("FLUTTER + MATERIAL 3"),
+        centerTitle: true,
+      ),
+      body: const _HomeView(),
+      drawer: SideMenu(),
+    );
   }
 }
 
@@ -55,7 +58,6 @@ class _CustomListTile extends StatelessWidget {
       title: Text(menuItem.title),
       subtitle: Text(menuItem.subTitle),
       onTap: () {
-        
         // Navigator.of(context).push(
         //   MaterialPageRoute(
         //     builder: (context) => const ButtonsScreen(),
@@ -64,9 +66,7 @@ class _CustomListTile extends StatelessWidget {
         // Navigator.pushNamed(context, menuItem.link );
 
         // context.pushNamed( CardsScreen.name );
-        context.push( menuItem.link );
-
-
+        context.push(menuItem.link);
       },
     );
   }
