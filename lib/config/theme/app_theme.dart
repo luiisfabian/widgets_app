@@ -20,6 +20,12 @@ class AppTheme {
         assert(selectedColor < colorList.length,
             'El Color debe ser menor a ${colorList.length - 1}');
 
-  ThemeData getTheme() =>
-      ThemeData(useMaterial3: true, colorSchemeSeed: colorList[selectedColor], brightness: isDarkMode ? Brightness.dark : Brightness.light);
+  ThemeData getTheme() => ThemeData(
+      useMaterial3: true,
+      colorSchemeSeed: colorList[selectedColor],
+      brightness: isDarkMode ? Brightness.dark : Brightness.light);
+
+  AppTheme copyWith({int? selectedColor, bool? isDarkMode}) {
+    return AppTheme(selectedColor: selectedColor ?? this.selectedColor, isDarkMode: isDarkMode ?? this.isDarkMode);
+  }
 }
